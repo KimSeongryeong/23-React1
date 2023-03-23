@@ -1,5 +1,75 @@
 # 김성령
-## 2023-03-16 3주차
+
+## 2023-03-23 (4주차)
+
+
+1. README.md 백업
+2. local에 있는 저장소 이름 바꾸기/삭제
+3. 새프로젝트 생성(23-react1)
+4. README.md 덮어쓰기
+5. GitHub 저장소 삭제
+6. 로컬에서 23-react1 push
+7. GitHub 저장소 확인
+
+프로젝트 생성
+ : npx cerate-react-app 23-react1 
+
+### 3장
+
+#### <JSX의 정의>
+* 자바스크립트와 XML/HTML을 함께사용할 수 있는 자바스크립트 확장 문법
+
+#### <JSX의 역할>
+* JSX로 작성된 코드는 모두 자바스크립트의 확장 문법
+* 리액트는 JSX 코드를 모두 createElement() 함수를 사용하는 코드로 변환
+
+#### <JSX의 장점>
+* 코드가 간결해짐
+* 가독성 향상
+* Injection Attack을 방어함으로써 보안성이 올라감
+
+#### <JSX 사용법>
+* 기본적으로 모든 자바스크립트 문법을 지원
+* 자바스크립트에 XML과 HTML을 섞어서 사용
+* 중괄호를 사용하여 자바스크립트 코드를 삽입
+
+#### <JSX 실습>
+
+#### Book.jsx
+```jsx
+import React from "react";
+
+function Book(props) {
+    return (
+        <div>
+            <h1>{`이 책의 이름은 ${props.name}입니다.`}</h1>
+            <h2>{`이 책은 총 ${props.numOfPage}페이지로 이뤄져 있습니다.`}</h2>
+        </div>
+    )
+}
+
+export default Book;
+```
+
+#### Library.jsx
+```jsx
+import React from "react";
+import Book from "./Book";
+
+function Library(props) {
+    return (
+        <div>
+            <Book name="처음 만난 파이썬" numOfPage={300}/>
+            <Book name="처음 만난 AWS" numOfPage={400}/>        
+            <Book name="처음 만난 리액트" numOfPage={500}/>
+        </div>
+    );
+}
+
+export default Library;
+```
+---
+## 2023-03-16 (3주차)
 
 ### 0장
 
@@ -44,3 +114,5 @@
 * CSS를 사용하여 스타일링하기
 * 웹사이트에 Reactjs 추가하기
 * create-react-app1 사용해서 리액트 애플리케이션 생성 및 실행
+
+---
