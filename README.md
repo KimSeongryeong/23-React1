@@ -1,5 +1,115 @@
 # 김성령
 
+## 2023-03-30 (5주차)
+
+### 4장
+
+#### <엘리먼트의 정의>
+* 리액트 앱의 가장 작은 빌딩 블록들
+* 화면에 나타나는 내용을 기술하는 자바스크립트 객체
+* 리액트 엘리먼트 DOM 엘리먼트의 가상 표현
+
+#### <엘리먼트의 생김새>
+* 엘리먼트는 자바스크립트 객체 형태로 존재
+* 컴포넌트 유형과 속성 및 내부의 모든 자식에 대한 정보를 포함하고 있는 일반적인 자바스크립트 객체
+
+#### <엘리머트의 특징>
+* 이 객체는 마음대로 변경할 수 없는 불변성
+* 엘리먼트 생성 후에는 자식이나 속성을 바꿀 수 없음
+
+#### <엘리먼트 렌더링하기>
+* 렌더링을 위해 ReactDOM의 render()라는 함수를 사용
+  + 리액트 엘리먼트를 HTML 엘리먼트에 랜더링하는 역할
+* 렌더링되는 과정은 Virtual DOM애서 실제 DOM으로 이동하는 과정
+
+#### 렌더링된 엘리먼트 업데이트하기
+* 엘리먼트는 한 번 생성되면 바꿀 수 없기 때문에 엘리먼트를 업데이트하기 위해서는 다시 생성해야 함
+* 기존 엘리먼트를 변경하는 것이 아니라 새로운 엘리먼트를 생성해서 바꿔치기 하는 것
+
+#### <랜더링된 엘리먼트 업데이트 실습>
+
+##### clock.html
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- 실행 스크립트 -->
+  <script type="text/babel">
+    function tick() {
+        const element = (
+            <div>
+                <h1>안녕! 리액트</h1>
+                <h2>현재시간 : {new Date().toLocaleTimeString()}</h2>
+            </div>
+        )
+
+    ReactDOM.render(element, document.getElementById('root'));
+}
+setInterval(tick, 1000);
+
+  </script>
+</body>
+</html>
+```
+
+#### <시계만들기 실습( 교재코드X )>
+
+##### Clock.jsx
+```jsx
+import React from "react";
+
+function Clock(props) {
+    return (
+        <div>
+            <h1>안녕, 리액트!</h1>
+            <h2>현재시간 : {new Date(). toLocaleTimeString()}</h2>
+        </div>
+    );
+}
+
+export default Clock;
+
+```
+
+##### index.js
+```js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+
+import Library from './chapter_03/Library';
+import Clock from './chapter_04/Clock';
+
+setInterval(() => {
+const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(
+  <React.StrictMode>
+    <Clock/>
+  </React.StrictMode>
+);
+}, 1000);
+
+reportWebVitals();
+
+```
+
+### 5장
+---
+
 ## 2023-03-23 (4주차)
 
 
@@ -35,7 +145,7 @@
 
 #### <JSX 실습>
 
-#### Book.jsx
+##### Book.jsx
 ```jsx
 import React from "react";
 
@@ -51,7 +161,7 @@ function Book(props) {
 export default Book;
 ```
 
-#### Library.jsx
+##### Library.jsx
 ```jsx
 import React from "react";
 import Book from "./Book";
