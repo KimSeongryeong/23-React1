@@ -5,6 +5,200 @@
 ### 5장(2)
 
 #### <컴포너트 추출>
+* 큰 컴포넌트에서 일부를 추출해서 새로운 컴포넌트를 만드는 것
+* 기능 단위로  구분하는 것이 좋고, 나중에 곧바로 재사용이 가능한 형태로 추출하는 것이 좋음
+
+#### <댓글 컴포넌트 만들기>
+
+##### Comment.jsx
+```jsx
+import React from "react";
+
+const styles = {
+    wrapper: {
+        margin: 8,
+        padding: 8,
+        display: "flex",
+        flexDirection: "row",
+        border: "1px solid grey",
+        borderRadius: 16,
+    },
+    imageContainer: {},
+    image: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+    },
+    contentContainer: {
+        marginLeft: 8,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+    },
+    nameText: {
+        color: "black",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
+    commentText: {
+        color: "black",
+        fontSize: 16,
+    },
+  };
+
+function Comment(props) {
+    return (
+        <div style={styles.wrapper}>
+            <div style={styles.imageContainer}>
+                <img
+                src="https://i.namu.wiki/i/fhpoI9UeGzYSlO0RC4olFnKWrmFDMVumnMc-wJVlVM8ejDmbfr9xw4Rq_wwVjpklNiLduMYtK8zrU0hPOi-bdNuyXxTVo_SIeX6XF-F7kPeEafkDJlFfCqyviEL-Uc63AI_Ak6SgENTBE2uJP8AFbg.webp"
+                alt="프로필 이미지"
+                style={styles.image}
+                />
+                </div>
+                <div style = {styles.contentContainer}>
+                    <span style={styles.nameText}>{props.name}</span>
+                    <span style={styles.commentText}>{props.comment}</span>
+            <h1>[04월06일]내가 만든 첫 컴포넌트.</h1>
+        </div>
+        </div>
+    );
+}
+
+export default Comment;
+
+
+```
+
+##### CommentList.jsx
+```jsx
+import { computeHeadingLevel } from "@testing-library/react";
+import React from "react";
+import Comment from "./CommentList";
+
+const comment = [
+    {
+        name: "김성령",
+        coment: "안녕하세요.",
+    
+    },
+    {
+        name: "김성령",
+        coment: "안녕하세요.",
+    
+    },
+    {
+        name: "김성령",
+        coment: "안녕하세요.",
+    
+    },
+];
+
+function CommentList(props) {
+    return (
+        <div>
+            {comment.map((comment) => {
+                return (
+                    <Comment name={comment.name} comment={comment.comment}/>
+                );
+            })}
+           
+        </div>
+    );
+}
+
+export default CommentList;
+```
+### <6장>
+
+#### <State란?>
+* 리액트 컴포넌트의 변경이 가능한 데이터
+* 컴포넌트를 개발하는 개발자가 직접 정의해서 사용
+* state가 변경될 경우 컴포넌트가 재렌더링됨
+* 렌더링이나 데이터 흐름에 사용되는 값만 state에 포함시켜야 함 
+
+#### <State의 특징>
+* 자바스크립트 객체 형태로 존재
+* 직접적인 변경이 불가능 함
+* 클래스 컴포넌트
+  * 생성자에서 모든 state를 한 번에 정의
+  * state를 변경하고자 할 때에는 꼭 setState()함수를 사용해야 함
+
+#### <함수 컴포넌트>
+* useState()훅을 사용하여 각각의 state를 정의
+* 각 state별로 주어지는 set함수를 사용하여 state 값을 변경
+
+### -생명주기-
+
+#### <마운트>
+* 컴포넌트가 생성될 때
+* componentDidMount()
+
+#### <업데이트>
+* 컴포넌트 props가 변경될 때
+* setState() 함수 호출에 의해 state가 변경될 때
+* forceUpdate()라는 강제 업데이트 함수가 호출될 때
+* componentDidUpdate()
+
+#### <언마우트>
+* 상위 컴포넌트에서 현재 컴포넌트를 더 이상 화면에 표시하지 않게 될 때
+* componentWillUnmount()
+
+#### <컴포넌트는 계속 존재하는 것이 아니라 시간의 흐름에 따라 생성되고 업데이트되다가 사라지는 과정을 격음>
+
+#### <State와 생명주기 사용하기 실습>
+##### Notification.jsx
+```jsx
+import React from "react";
+import Notification from "./Notification";
+
+cons
+
+const styles = {
+    wrapper: {
+    margin: 8,
+    padding: 8,
+    display: "flex",
+    flexDirection: "row",
+    border: "1px solid grey",
+    borderRadius: 16,
+    },
+    messageText: {
+        color: "black",
+        fontSize: 16,
+    },
+};
+
+class Notification extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {};
+    }
+
+    componentDidMount() {
+        console.log(`${this.props.id} componentDidMount() called.`);
+    }
+
+    componentDidUpdate() {
+    
+        console.log(`${this.props.id} componentDidUpdate() called.`);
+    }
+    componentWillUnmount() {
+    
+        console.log(`${this.props.id} componentWillUnmount() called.`);
+    }
+    render() {
+        return (
+            <div style={styles.wrapper}>
+                <span style={styles.messageText}>{this.props.messageText}</span>
+            </div>
+        );
+    }
+}
+
+export default Notification;
+```
 ---
 
 ## 2023-03-30 (5주차)
