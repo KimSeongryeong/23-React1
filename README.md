@@ -1,5 +1,143 @@
 # 김성령 202130105
-## 2023-04-27 (9주차><)
+## 2023-04-27 (9주차)
+### 8장
+
+#### <이벤트란?>
+ 사용자가 버튼을 클릭하는 등의 사건을 의미
+ 이벤트 처리하기
+#### DOM의 이벤트
+- 이벤트의 이름을 모두 소문자로 표기
+- 이벤트를 처리할 함수를 문자열로 전달
+#### 리액트의 이벤트
+- 이벤트의 이름을 카멜 표기법으로 표기
+- 이벤트를 처리할 함수를 그대로 전달
+#### 이벤트 핸들러
+- 이벤트가 발생했을 때 해당 이벤트를 처리하는 함수
+- 이벤트 리스너라고 부르기도 함
+#### 클래스 컴포넌트
+- 클래스의 함수로 정의하고 생성자에서 바인딩해서 사용
+- 클래스 필드 문법도 사용가능
+#### 함수 컴포넌트
+- 함수 안에 함수로 정의하거나 arrow function을 사용해서 정의
+### <Arguments 전달하기>
+- Argument란?
+- 함수에 전달할 데이터
+
+- 파라미터 또는 매개변수라고 부르기도 함
+#### 클래스 컴포넌트
+- arrow function을 사용하거나 Function.prototype.bindft 사용해서 전달
+#### 함수 컴포넌트
+- 이벤트 핸들러 호출 시 원하는 순서대로 매개변수를 넣어서 사용
+
+#### <클릭 이벤트 처리하기 실습>
+##### ConfirmButton.jsx
+```jsx
+import React, {useState} from "react";
+
+function ConfirmButton(props) {
+    const [isConfirmed, setIsConfirmed] = useState(false);
+
+    const handleConfirm = () => {
+        setIsConfirmed((prevIsConfirmed) => !prevIsConfirmed);
+    };
+
+    return (
+        <button onClick={handleConfirm} disabled={isConfirmed}>
+            {isConfirmed ? "확인됨" : "확인하기"}
+        </button>
+    );
+    
+}
+
+export default ConfirmButton;
+```
+### 9장
+
+#### 조건부 렌더링
+- 조건에 따라 렌더링의 결과가 달라지도록 하는 것
+#### 엘리먼트 변수
+- 리액트 엘리먼트를 변수처럼 저장해서 사용하는 방법
+#### 인라인 조건
+- 조건문을 코드 안에 집어넣는 것
+- 인라인 If
+  - If문을 필요한 곳에 직접 집어넣어서 사용하는 방법
+  - 논리 연산자 &&를 사용 （AND 연산）
+  - 앞에 나오는 조건문이 tr니e일 경우에만 뒤에 나오는 엘리먼트를 렌더링
+- 인라인 If-Else
+  - If—티se문을 필요한 곳에 직접 집어 넣어서 사용하는 방법
+  - 삼항연산자?를 사용
+  - 앞에 나오는 조건문이 true면 첫 번째 항목을 리턴 false면 두 번째 항목을 리턴
+  - 조건에 따라 각기 다른 엘리먼트를 렌더링하고 싶을 때 사용
+#### 컴포넌트 렌더링 막기
+- 리액트에서는 null을 리턴하면 렌더링되지 않음
+- 특정 컴포넌트를 렌더링하고 싶지 않을 경우 n니을 리턴하면 
+
+#### <로그인 여부를 나타내는 툴바 만들기 실습>
+##### LandingPage.jsx
+
+```jsx
+import React, {useState} from "react";
+import Toolbar from "./Toolbar";
+
+function LandingPage(props) {
+    const [isLoggedInm, setlsLoggedln] = useState(false);
+
+    const onClickLogin = () => {
+        setIsLoggedIn(true);
+    };
+
+    const onClickLogout = () => {
+        setIsLoggedIn(false);
+    };
+
+    return (
+        <div>
+            <Toolbar
+                isLoggedInm = {isLoggedInm}
+                onClickLogin = {onClickLogin}
+                onClickLogout = {onClickLogout}    
+            />
+            <div style={{padding : 16 }}>소플과 함께하는 리액트 공부!</div>
+        </div>
+    );
+}
+
+export default LandingPage;
+```
+##### Toolbar.jsx
+
+```jsx
+import React from "react";
+
+const style = {
+    wrapper: {
+        padding: 16,
+        display: "flex",
+        flexDirection: "1px solid grey"
+    },
+    greeting: {
+        marginRight: 8,
+    },
+};
+
+function Toolbar(props) {
+    const { isLoggedIn, onClickLogin, onClickLogout} = props;
+
+    return (
+        <div style={style.wraper}>
+            {isLoggedIn && <span style={style.greeting}>환영합니다!</span>}
+
+            {isLoggedIn ? (
+                <button onClick={onClickLogout}>로그아웃</button>
+            ) : (
+                <button onClick={onClickLogin}>로그인</button>
+            )}
+            
+        </div>
+    )
+}
+```
+
 ---
 ## 2023-04-13 (7주차)
 
