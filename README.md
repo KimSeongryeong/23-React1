@@ -1,5 +1,274 @@
-# 김성령
+# 김성령 202130105
 
+## 2023-05-04 (10주차)
+
+### 10장
+
+#### <리스트>
+- 같은 아이템을 순서대로 모아놓은 것
+
+#### <키>
+- 각 객체나 아이템을 구분할 수 있는 고유한 값
+
+#### <여러 개의 컴포넌트 렌더링>
+- 자바스크립트 배열의 map() 함수를 사용
+  -  배열에 들어있는 각 변수에 어떤 처리를 한 뒤 결과(엘리먼트)를 배열로 만들어서 리턴함
+  -  map() 함수 안에 있는 엘리먼트는 꼭 키가 필요함
+
+#### <리스트의 키>
+-  리스트에서 아이템을 구분하기 위한 고유한 문자열
+- 리스트에서 어떤 아이템이 변경, 추가 또는 제거되었는지 구분하기 위해 사용
+- 리액트에서는 키의 값은 같은 리스트에 있는 엘리먼트 사이에서만 고유한 값이면 됨
+
+#### 다양한 키값의 사용법
+- 숫자 값을 사용
+  - 배열에 중복된 숫자가 들어있다면 키값도 중복되기 때문에 고유해야 한다는 키값의 조건이 충족되지않음
+- id를 사용
+  - id의 의미 자체가 고유한 값이므로 키값으로 사용하기 적합
+  - id가 있는 경우에는 보통 id 값을 키값으로 사용
+- 인덱스를 사용
+  - 배열에서 아이템의 순서가 바뀔 수 있는 경우에는 키값으로 인덱스를 사용하는 것을 권장하지 않음
+  - 리액트에서는 키를 명시적으로 넣어 주지 않으면 기본적으로 이 인덱스 값을 키값으로 사용
+
+#### <실습 : 출석부 출력하기>
+##### AttendanceBook.jsx
+```jsx
+import React from "react";
+
+const students = [
+    {
+        id : 1,
+        name: "Inje",
+    },
+    {
+        id : 2,
+        name: "Steve",
+    },
+    {
+        id : 3,
+        name: "Bill",
+    },
+    {
+        id : 4,
+        name: "Jeff",
+    }
+];
+
+function AttendanceBook(props) {
+    return (
+        <ui>
+            {students.map((student) => {
+                return<li>key={student.id}{student.name}</li>;
+            })}
+        </ui>
+    );
+}
+
+export default AttendanceBook;
+```
+
+### 11장
+
+#### <폼이란?>
+- 사용자로부터 입력을 받기 위해 사용하는 양식
+
+#### <제어 컴포넌트>
+- 사용자가 입력한 값에 접근하고 제어할 수 있게 해주는 컴포넌트
+- 값이 리액트의 통제를 받는 입력 폼 엘리먼트
+
+#### <[input type="text"]태그>
+- 한 줄로 텍스트를 입력받기 위한 HTML 태그
+- 리액트에서는 value라는 attribute로 입력된 값을 관리
+
+#### <[textarea] 태그>
+- 여러 줄에 걸쳐서 텍스트를 입력받기 위한 HTML 태그
+- 리액트에서는 value라는 attribute로 입력된 값을 관리
+
+#### <(select) 태그>
+- 드롭다운 목록을 보여주기 위한 HTML 태그
+- 여러 가지 옵션 중에서 하나 또는 여러 개를 선택할 수 있는 기능을 제공
+- 리액트에서는 value라는 attribute로 선택된 옵션의 값을 관리
+
+#### <[input type="file"] 태그>
+- 디바이스의 저장 장치로부터 사용자가 하나 또는 여러 개의 파일을 선택할 수 있게 해주는 HTML 태그
+- 서버로 파일을 업로드하거나 자바스크립트의 티e API를 사용해서 파일을 다룰 때 사용
+- 읽기 전용이기 때문에 리액트에서는 비제어 컴포넌트가 됨
+
+#### <여러 개의 입력 다루기>
+- 컴포넌트에 여러 개의 state를 선언하여 각각의 입력에 대해 사용하면 됨
+
+#### <Input Null Value!>
+- value prop은 넣되 자유롭게 입력할 수 있게 만들고 싶을 경우, 값에 undefined 또는 null을 넣으면 됨
+
+#### <실습 : 사용자 정보 입력받기>
+##### SignUp.jsx
+```jsx
+import React from "react"; 
+import { useState } from "react";
+
+function SignUp(props) {
+    const [name, setName] = useState("");
+
+    const handleChangeName = (event) => {
+        setName(event.target.value);
+    };
+
+    const handleSubmit = (event) => {
+        alert(`이름: ${name}`);
+        event.preventDefault();
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <label>
+                이름:
+                <input type="text" value={name} onChange={handleChangeName}/>
+            </label>
+            <button type="submit">제출</button>
+        </form>
+
+    );
+}
+
+export default SignUp;
+```
+---
+## 2023-04-27 (9주차)
+
+### 8장
+
+#### <이벤트란?>
+- 사용자가 버튼을 클릭하는 등의 사건을 의미
+
+#### <이벤트 처리하기>
+
+##### <DOM의 이벤트>
+- 이벤트의 이름을 모두 소문자로 표기
+- 이벤트를 처리할 함수를 문자열로 전달
+##### <리액트의 이벤트>
+ - 이벤트의 이름을 카멜 표기법으로 표기
+- 이벤트를 처리할 함수를 그대로 전달
+##### <이벤트 핸들러>
+- 이벤트가 발생했을 때 해당 이벤트를 처리하는 함수
+- 이벤트 리스너라고 부르기도 함
+##### <클래스 컴포넌트>
+- 클래스의 함수로 정의하고 생성자에서 바인딩해서 사용
+- 클래스 필드 문법도 사용가능
+##### <함수 컴포넌트>
+- 함수 안에 함수로 정의하거나 arrow function을 사용해서 정의
+##### <Arguments 전달하기>
+- Argument란?
+- 함수에 전달할 데이터
+
+- 파라미터 또는 매개변수라고 부르기도 함
+#### <클래스 컴포넌트>
+- arrow function을 사용하거나 Function.prototype.bindft 사용해서 전달
+#### <함수 컴포넌트>
+- 이벤트 핸들러 호출 시 원하는 순서대로 매개변수를 넣어서 사용
+
+#### <클릭 이벤트 처리하기 실습>
+##### ConfirmButton.jsx
+```jsx
+import React, {useState} from "react";
+function ConfirmButton(props) {
+    const [isConfirmed, setIsConfirmed] = useState(false);
+    const handleConfirm = () => {
+        setIsConfirmed((prevIsConfirmed) => !prevIsConfirmed);
+    };
+    return (
+        <button onClick={handleConfirm} disabled={isConfirmed}>
+            {isConfirmed ? "확인됨" : "확인하기"}
+        </button>
+    );
+    
+}
+export default ConfirmButton;
+```
+### 9장
+
+#### <조건부 렌더링>
+- 조건에 따라 렌더링의 결과가 달라지도록 하는 것
+#### <엘리먼트 변수>
+- 리액트 엘리먼트를 변수처럼 저장해서 사용하는 방법
+#### <인라인 조건>
+- 조건문을 코드 안에 집어넣는 것
+- 인라인 If
+  - If문을 필요한 곳에 직접 집어넣어서 사용하는 방법
+  - 논리 연산자 &&를 사용 （AND 연산）
+  - 앞에 나오는 조건문이 tr니e일 경우에만 뒤에 나오는 엘리먼트를 렌더링
+- 인라인 If-Else
+  - If—티se문을 필요한 곳에 직접 집어 넣어서 사용하는 방법
+  - 삼항연산자?를 사용
+  - 앞에 나오는 조건문이 true면 첫 번째 항목을 리턴 false면 두 번째 항목을 리턴
+  - 조건에 따라 각기 다른 엘리먼트를 렌더링하고 싶을 때 사용
+#### <컴포넌트 렌더링 막기>
+- 리액트에서는 null을 리턴하면 렌더링되지 않음
+- 특정 컴포넌트를 렌더링하고 싶지 않을 경우 n니을 리턴하면 
+
+#### <로그인 여부를 나타내는 툴바 만들기 실습>
+##### LandingPage.jsx
+
+```jsx
+import React, {useState} from "react";
+import Toolbar from "./Toolbar";
+function LandingPage(props) {
+    const [isLoggedInm, setlsLoggedln] = useState(false);
+    const onClickLogin = () => {
+        setIsLoggedIn(true);
+    };
+    const onClickLogout = () => {
+        setIsLoggedIn(false);
+    };
+    return (
+        <div>
+            <Toolbar
+                isLoggedInm = {isLoggedInm}
+                onClickLogin = {onClickLogin}
+                onClickLogout = {onClickLogout}    
+            />
+            <div style={{padding : 16 }}>소플과 함께하는 리액트 공부!</div>
+        </div>
+    );
+}
+export default LandingPage;
+```
+##### Toolbar.jsx
+
+```jsx
+import React from "react";
+const style = {
+    wrapper: {
+        padding: 16,
+        display: "flex",
+        flexDirection: "1px solid grey"
+    },
+    greeting: {
+        marginRight: 8,
+    },
+};
+function Toolbar(props) {
+    const { isLoggedIn, onClickLogin, onClickLogout} = props;
+    return (
+        <div style={style.wraper}>
+            {isLoggedIn && <span style={style.greeting}>환영합니다!</span>}
+            {isLoggedIn ? (
+                <button onClick={onClickLogout}>로그아웃</button>
+            ) : (
+                <button onClick={onClickLogin}>로그인</button>
+            )}
+            
+        </div>
+    )
+}
+```
+
+---
+
+## 2023-04-20 (8주차)
+
+
+#### <중간고사>
+---
 ## 2023-04-13 (7주차)
 
 ### 7장
@@ -251,7 +520,7 @@ export default CommentList;
 * useState()훅을 사용하여 각각의 state를 정의
 * 각 state별로 주어지는 set함수를 사용하여 state 값을 변경
 
-### -생명주기-
+### <생명주기>
 
 #### <마운트>
 * 컴포넌트가 생성될 때
