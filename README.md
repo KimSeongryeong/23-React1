@@ -1,4 +1,5 @@
 # 김성령 202130105
+<<<<<<< HEAD
 
 ## 2023-05-04 (10주차)
 
@@ -157,6 +158,29 @@ export default SignUp;
 ##### <함수 컴포넌트>
 - 함수 안에 함수로 정의하거나 arrow function을 사용해서 정의
 ##### <Arguments 전달하기>
+=======
+## 2023-04-27 (9주차)
+### 8장
+
+#### <이벤트란?>
+ 사용자가 버튼을 클릭하는 등의 사건을 의미
+ 이벤트 처리하기
+#### <DOM의 이벤트>
+- 이벤트의 이름을 모두 소문자로 표기
+- 이벤트를 처리할 함수를 문자열로 전달
+#### <리액트의 이벤트>
+- 이벤트의 이름을 카멜 표기법으로 표기
+- 이벤트를 처리할 함수를 그대로 전달
+#### <이벤트 핸들러>
+- 이벤트가 발생했을 때 해당 이벤트를 처리하는 함수
+- 이벤트 리스너라고 부르기도 함
+#### <클래스 컴포넌트>
+- 클래스의 함수로 정의하고 생성자에서 바인딩해서 사용
+- 클래스 필드 문법도 사용가능
+#### <함수 컴포넌트>
+- 함수 안에 함수로 정의하거나 arrow function을 사용해서 정의
+#### <Arguments 전달하기>
+>>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
 - Argument란?
 - 함수에 전달할 데이터
 
@@ -170,11 +194,22 @@ export default SignUp;
 ##### ConfirmButton.jsx
 ```jsx
 import React, {useState} from "react";
+<<<<<<< HEAD
 function ConfirmButton(props) {
     const [isConfirmed, setIsConfirmed] = useState(false);
     const handleConfirm = () => {
         setIsConfirmed((prevIsConfirmed) => !prevIsConfirmed);
     };
+=======
+
+function ConfirmButton(props) {
+    const [isConfirmed, setIsConfirmed] = useState(false);
+
+    const handleConfirm = () => {
+        setIsConfirmed((prevIsConfirmed) => !prevIsConfirmed);
+    };
+
+>>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
     return (
         <button onClick={handleConfirm} disabled={isConfirmed}>
             {isConfirmed ? "확인됨" : "확인하기"}
@@ -182,6 +217,10 @@ function ConfirmButton(props) {
     );
     
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
 export default ConfirmButton;
 ```
 ### 9장
@@ -211,6 +250,7 @@ export default ConfirmButton;
 ```jsx
 import React, {useState} from "react";
 import Toolbar from "./Toolbar";
+<<<<<<< HEAD
 function LandingPage(props) {
     const [isLoggedInm, setlsLoggedln] = useState(false);
     const onClickLogin = () => {
@@ -219,6 +259,20 @@ function LandingPage(props) {
     const onClickLogout = () => {
         setIsLoggedIn(false);
     };
+=======
+
+function LandingPage(props) {
+    const [isLoggedInm, setlsLoggedln] = useState(false);
+
+    const onClickLogin = () => {
+        setIsLoggedIn(true);
+    };
+
+    const onClickLogout = () => {
+        setIsLoggedIn(false);
+    };
+
+>>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
     return (
         <div>
             <Toolbar
@@ -230,12 +284,20 @@ function LandingPage(props) {
         </div>
     );
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
 export default LandingPage;
 ```
 ##### Toolbar.jsx
 
 ```jsx
 import React from "react";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
 const style = {
     wrapper: {
         padding: 16,
@@ -246,11 +308,22 @@ const style = {
         marginRight: 8,
     },
 };
+<<<<<<< HEAD
 function Toolbar(props) {
     const { isLoggedIn, onClickLogin, onClickLogout} = props;
     return (
         <div style={style.wraper}>
             {isLoggedIn && <span style={style.greeting}>환영합니다!</span>}
+=======
+
+function Toolbar(props) {
+    const { isLoggedIn, onClickLogin, onClickLogout} = props;
+
+    return (
+        <div style={style.wraper}>
+            {isLoggedIn && <span style={style.greeting}>환영합니다!</span>}
+
+>>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
             {isLoggedIn ? (
                 <button onClick={onClickLogout}>로그아웃</button>
             ) : (
@@ -263,12 +336,15 @@ function Toolbar(props) {
 ```
 
 ---
+<<<<<<< HEAD
 
 ## 2023-04-20 (8주차)
 
 
 #### <중간고사>
 ---
+=======
+>>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
 ## 2023-04-13 (7주차)
 
 ### 7장
