@@ -135,6 +135,7 @@ export default SignUp;
 ---
 
 ## 2023-04-27 (9주차)
+
 ### 8장
 
 #### <이벤트란?>
@@ -155,7 +156,6 @@ export default SignUp;
 #### <함수 컴포넌트>
 - 함수 안에 함수로 정의하거나 arrow function을 사용해서 정의
 #### <Arguments 전달하기>
->>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
 - Argument란?
 - 함수에 전달할 데이터
 
@@ -169,13 +169,13 @@ export default SignUp;
 ##### ConfirmButton.jsx
 ```jsx
 import React, {useState} from "react";
-<<<<<<< HEAD
+
 function ConfirmButton(props) {
     const [isConfirmed, setIsConfirmed] = useState(false);
     const handleConfirm = () => {
         setIsConfirmed((prevIsConfirmed) => !prevIsConfirmed);
     };
-=======
+
 
 function ConfirmButton(props) {
     const [isConfirmed, setIsConfirmed] = useState(false);
@@ -184,7 +184,6 @@ function ConfirmButton(props) {
         setIsConfirmed((prevIsConfirmed) => !prevIsConfirmed);
     };
 
->>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
     return (
         <button onClick={handleConfirm} disabled={isConfirmed}>
             {isConfirmed ? "확인됨" : "확인하기"}
@@ -192,10 +191,8 @@ function ConfirmButton(props) {
     );
     
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
+
 export default ConfirmButton;
 ```
 ### 9장
@@ -225,16 +222,6 @@ export default ConfirmButton;
 ```jsx
 import React, {useState} from "react";
 import Toolbar from "./Toolbar";
-<<<<<<< HEAD
-function LandingPage(props) {
-    const [isLoggedInm, setlsLoggedln] = useState(false);
-    const onClickLogin = () => {
-        setIsLoggedIn(true);
-    };
-    const onClickLogout = () => {
-        setIsLoggedIn(false);
-    };
-=======
 
 function LandingPage(props) {
     const [isLoggedInm, setlsLoggedln] = useState(false);
@@ -247,7 +234,6 @@ function LandingPage(props) {
         setIsLoggedIn(false);
     };
 
->>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
     return (
         <div>
             <Toolbar
@@ -259,20 +245,14 @@ function LandingPage(props) {
         </div>
     );
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
 export default LandingPage;
 ```
 ##### Toolbar.jsx
 
 ```jsx
 import React from "react";
-<<<<<<< HEAD
-=======
 
->>>>>>> 22967d24b5e1731dd0d26bf917
 const style = {
     wrapper: {
         padding: 16,
@@ -283,22 +263,11 @@ const style = {
         marginRight: 8,
     },
 };
-<<<<<<< HEAD
 function Toolbar(props) {
     const { isLoggedIn, onClickLogin, onClickLogout} = props;
     return (
         <div style={style.wraper}>
             {isLoggedIn && <span style={style.greeting}>환영합니다!</span>}
-=======
-
-function Toolbar(props) {
-    const { isLoggedIn, onClickLogin, onClickLogout} = props;
-
-    return (
-        <div style={style.wraper}>
-            {isLoggedIn && <span style={style.greeting}>환영합니다!</span>}
-
->>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
             {isLoggedIn ? (
                 <button onClick={onClickLogout}>로그아웃</button>
             ) : (
@@ -311,15 +280,12 @@ function Toolbar(props) {
 ```
 
 ---
-<<<<<<< HEAD
 
 ## 2023-04-20 (8주차)
 
 
 #### <중간고사>
 ---
-=======
->>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
 ## 2023-04-13 (7주차)
 
 ### 7장
