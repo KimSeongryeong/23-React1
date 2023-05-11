@@ -272,7 +272,7 @@ import React from "react";
 <<<<<<< HEAD
 =======
 
->>>>>>> 22967d24b5e1731dd0d26bf9174e14d202fc3773
+>>>>>>> 22967d24b5e1731dd0d26bf917
 const style = {
     wrapper: {
         padding: 16,
