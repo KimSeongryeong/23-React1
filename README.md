@@ -1,5 +1,117 @@
 # 김성령 202130105
 
+## 2023-05-18 (12주차)
+
+
+### 13장
+
+#### <합성이란?>
+- 여러 개의 컴포넌트를 합쳐서 새로운 컴포넌트를 만드는 것
+- 다양하고 복잡한 컴포넌트를 효율적으로 개발할 수 있음
+
+#### <합성 기법>
+- Containment
+  - 하위 컴포넌트를 포함하는 형태의 합성 방법
+  - 리액트 컴포넌트의 props에 기본적으로 들어있는 children 속성을 사용
+  - 여러 개의 children 집합이 필요한 경우 별도로 props를 각각 정의해서 사용
+- Specialization
+  - 범용적인 개념을 구별되게 구체화하는 것
+  - 범용적으로 쓸 수 있는 컴포넌트를 만들어 놓고 이를 구체화 시켜서 컴포넌트를 사용하는 합성 방법
+- Containment와 Specialization을 함께 사용하기
+  - props.children을 통해 하위 컴포넌트를 포함시키기(Containment)
+  - 별도의 props를 선언하여 구체화시키기(Specialization)
+
+#### <상속>
+- 다른 컴포넌트로부터 상속받아서 새로운 컴포넌트를 만드는 것
+- 상속을 사용하여 컴포넌트를 만드는 것을 추천할 만한 사용 사례를 찾지 못함
+- 리액트에서는 상속이라는 방법을 사용하는 것보다는 합성을 사용하는 것이 더 좋음
+
+#### <실습 : Card컴포넌트 만들기>
+##### Card.jsx
+```jsx
+function Card(props) {
+    const { title, backgroundColor, children } = props;
+
+    return (
+        <div
+            style={{
+                margin: 8,
+                padding: 8,
+                borderRadius: 8,
+                boxShadow: "0px 0px 4px grey",
+                backgroundColor: backgroundColor || "white",
+            }}
+        >
+            {title && <h1>{title}</h1>}
+            {children}
+        </div>
+    );
+} 
+
+export default Card;
+```
+##### ProfileCard.jsx
+```jsx
+import Card from "./Card";
+
+function ProfileCard(props) {
+    return (
+        <Card title="Inje Lee" backgroundColor="#4ea04e">
+            <p>안녕하세요, 소플입니다.</p>
+            <p>저는 리액트를 사용해서 개발하고 있습니다.</p>
+        </Card>
+    );
+}
+
+export default ProfileCard;
+```
+
+### 14장
+
+#### <컨텍스트란?>
+- 컴포넌트들 사이에서 데이터를 props를 통해 전달하는 것이 아닌 컴포넌트 트리를 통해 곧바로 데이터를 전달하는 방식
+- 어떤 컴포넌트든지 컨텍스트에 있는 데이터에 쉽게 접근할 수 있음
+
+#### <컨텍스트를 사용해야 할 때>
+- 여러 컴포넌트에서 계속해서 접근이 일어날 수 있는 데이터들이 있는 경우
+- Provider의 모든 하위 컴포넌트가 얼마나 깊이 위치해 있는지 관계없이 컨텍스트의 데이터를 읽을 수 있음
+
+#### <컨텍스틑 사용 전 고려할 점>
+- 컴포넌트와 컨텍스트가 연동되면 재사용성이 떨어짐
+- 다른 레벨의 많은 컴포넌트가 데이터를 필요로 하는 경우가 아니라면, 기존 방식대로 props를 통해 데이터를 전달하는 것이 더 적합
+
+#### <컨텍스트 API>
+- React.createContext()
+  - 컨텍스트를 생성하기 위한 함수
+  - 컨텍스트 객체를 리턴함
+  - 기본값으로 undefined를 넣으면 기본값이 사용되지 않음
+- Context.Provider
+  - 모든 컨텍스트 객체는 Provider라는 컴포넌트를 갖고 있음
+  - Provider 컴포넌트로 하위 컴포넌트들을 감싸주면 모든 하위 컴포넌트들이 해당 컨텍스트의 데이터에 접근 할 수 있게 됨
+  - Provider에는 value라는 props가 있으며, 이것이 데이터로써 하위에 있는 컴포넌트들에게 전달됨
+  - 여러 개의 Provider 컴포넌트를 중첩시켜 사용 할 수 있음
+-  Class.contextType
+  - Provider 하위에 있는 클래스 컴포넌트에서 컨텍스트의 데이터에 접근하기 위해 사용
+  - 단 하나의 컨텍스트만을 구독할 수 있음
+- Context.Consumer
+  - 컨텍스트의 데이터를 구독하는 컴포넌트
+  - 데이터를 소비한다는 뜻에서 consumer 컴포넌트라고도 부름
+  -  consumer 컴포넌트는 컨텍스트 값의 변화를 지켜보다가 값이 변경되면 재렌더링됨
+  - 하나의 Provider컴포넌트는 여러 개의 consumer 컴포넌트와 연결될 수 있음
+  - 상위 레벨에 매칭되는 Provider가 없을 경우 기본값이 사용됨
+- Context.displayName 
+  - 크롬의 리액트 개발자 도구에서 표시괴는 컨텍스트 객체의 이름
+
+#### <여러 개의 컨텍스트 사용하기>
+- Provider 컴포넌트와 Consumer 컴포넌트를 여러 개 중첩해서 사용하면 됨
+
+#### <useContext()>
+- 함수 컴포넌트에서 컨텍스트를 쉽게 사용할 수 있 있게 해주는 훅
+- React.createContext() 함수 호출로 생성된 컨텍스트 객체를 인자로 받아서 현재 컨텍스트의 값을 리턴
+- 컨텍스트 값이 변경되면 변경된 값과 함께 useContext() 훅을 사용하는 컴포넌트가 재렌더링됨
+
+
+---
 ## 2023-05-11 (11주차)
  
 ### 12장
